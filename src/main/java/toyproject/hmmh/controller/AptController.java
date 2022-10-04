@@ -3,6 +3,7 @@ package toyproject.hmmh.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import toyproject.hmmh.domain.UserApt;
 import toyproject.hmmh.dto.SearchReqDto;
 import toyproject.hmmh.service.AptService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,22 +31,13 @@ public class AptController {
     //테이블 생성은 hmmh/sql/CreateTable.sql문을 실행시켜주시면 됩니다.
     //프로퍼티에 api 키와 db 정보를 입력하시면 됩니다.
     @GetMapping("/start")
-    public String mainController(SearchReqDto searchReqDto, Model model) {
-//            System.out.println("--------------HowMuchMyHouse--------------");
-//            System.out.print("우리 집 시군구(서울특별시 종로구): ");
-//            String s = sc.nextLine();
-//            System.out.print("우리 집 읍면동(충신동): ");
-//            String e = sc.nextLine();
-//            System.out.print("아파트 이름(힐스테이트): ");
-//            String a = sc.nextLine();
-//            System.out.print("조회할 계약연월(202209): ");
-//            String d = sc.nextLine();
-//            System.out.println("------------------------------------------");
-//            UserApt userApt = new UserApt(s, e, a);
-//
-//            aptService.getAptList(userApt, d);
+    public String mainController(@Valid SearchReqDto searchReqDto, Model model) {
 
         List<Apt> aptList = aptService.getAptList(searchReqDto.toUserApt(searchReqDto), searchReqDto.getDate());
+
+        if(aptList.isEmpty()){
+            return "error/500";
+        }
 
         model.addAttribute("aptList", aptList);
         model.addAttribute("aptInfo", aptList.get(0));
