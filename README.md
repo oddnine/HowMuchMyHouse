@@ -18,6 +18,7 @@
 
 - application.properties 파일의 my.apiKey에 apiKey를 입력하세요.
 - DB 테이블은 hmmh\sql\CreateTable.sql을 참조하세요.
+- 서울특별시를 조회하고 DB에 저장될 시 서울로 저장되어 AptRepositoryImpl에 조회 시 replace를 해주었는데, 다른 지역 조회 시 오류가 발생하면 조회될 때 시군구 이름과 DB에 저장되는 시군구 이름을 비교해보세요.
 
 ## 실행 화면
 
