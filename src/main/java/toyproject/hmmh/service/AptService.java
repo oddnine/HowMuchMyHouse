@@ -31,7 +31,7 @@ public class AptService {
         getTxtData.saveRegionCodes();
     }
 
-    public void getAptList(UserApt userApt, int date) {
+    public List<Apt> getAptList(UserApt userApt, int date) {
         int year = date / 100;
         int day = date - year * 100;
         List<Apt> aptList = aptRepository.findByInfo(userApt, year, day);
@@ -42,7 +42,7 @@ public class AptService {
             RegionCodeItem region = regionCodeItemRepository.findBySigunguCode(userApt.getSigungu() + " " + userApt.getDong());
             if (region == null) {
                 System.out.println("지역 입력을 바르게 하십시오.");
-                return;
+                return aptList;
             }
             List<Apt> apiDatas = getApi.getApiData(region, String.valueOf(date));
 
@@ -55,16 +55,17 @@ public class AptService {
                 }
                 if (tradedMyApt.isEmpty()) {
                     System.out.println("조회된 내용이 없습니다.");
-                    return;
+                    return tradedMyApt;
                 }
             } else {
                 System.out.println("조회된 내용이 없습니다.");
-                return;
+                return apiDatas;
             }
             printAptTradedInfo(tradedMyApt);
-
+            return tradedMyApt;
         } else {
             printAptTradedInfo(aptList);
+            return aptList;
         }
     }
 

@@ -59,12 +59,6 @@ public class AptRepositoryImpl implements AptRepository {
         param.add(dealYear);
         param.add(dealMonth);
 
-//        SqlParameterSource param = new MapSqlParameterSource()
-//                .addValue("sigungu", split[1])
-//                .addValue("dong", tempApt.getDong())
-//                .addValue("aptName", tempApt.getAptName())
-//                .addValue("dealMonth", dealMonth);
-
         return template.query(sql, itemRowMapper(), param.toArray());
     }
 

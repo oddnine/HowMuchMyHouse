@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>거래 내역</h2>
+    </div>
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>아파트 이름</th>
+                <th>아파트 주소</th>
+                <th>건축 년도</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${aptInfo.aptName}">아파트 이름</td>
+                <td th:text="${aptInfo.sigungu +' ' + aptInfo.dong}">아파트 주소</td>
+                <td th:text="${aptInfo.buildYear}">건축 년도</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>거래 날짜</th>
+                <th>전용 면적</th>
+                <th>층</th>
+                <th>거래금액 (단위: 십만 원)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="apt : ${aptList}">
+                <td th:text="${apt.dealYear + '년 ' + apt.dealMonth + '월 ' + apt.dealDay + '일'}">거래 날짜</td>
+                <td th:text="${apt.dedicatedArea} + 'm2'">면적</td>
+                <td th:text="${apt.floor}">10</td>
+                <td th:text="${apt.amount}">10000</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
