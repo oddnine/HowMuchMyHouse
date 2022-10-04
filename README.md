@@ -30,7 +30,9 @@
 
 ![image](https://user-images.githubusercontent.com/90389323/193715605-7aae2b72-5144-41fe-b17d-6fffb1c456e9.png)
 
-- 콘솔창
+- 출력화면
+
+![image](https://user-images.githubusercontent.com/90389323/193740236-a0bd607e-25db-4293-b160-18dcad710ea5.png)
 
 ![image](https://user-images.githubusercontent.com/90389323/193715806-26a811ba-53a7-49d7-aca8-3d7ffb3fb256.png)
 
